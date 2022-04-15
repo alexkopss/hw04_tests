@@ -22,8 +22,8 @@ class StaticURLTests(TestCase):
     def test_static_page_and_template(self):
         """Проверка статичных страниц"""
         templates_urls = {
-            '/about/author/': 'about/author.html',
-            '/about/tech/': 'about/tech.html',
+            reverse('about:author'): 'about/author.html',
+            reverse('about:tech'): 'about/tech.html',
         }
         for url, template in templates_urls.items():
             with self.subTest(url=url):
