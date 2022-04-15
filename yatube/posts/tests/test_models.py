@@ -26,3 +26,9 @@ class PostModelTest(TestCase):
         group = PostModelTest.group
         expected_object_name = group.title
         self.assertEqual(expected_object_name, str(group))
+
+    def test_models_post(self):
+        """Тест проверяет первые пятнадцать символов поста:"""
+        post = PostModelTest.post
+        post_cut = post.text[:15]
+        self.assertEqual(post_cut, str(post))
