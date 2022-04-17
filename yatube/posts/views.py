@@ -60,7 +60,10 @@ def post_detail(request, post_id):
 @login_required
 def post_create(request):
     """View функция страницы создания записи."""
-    form = PostForm(request.POST or None)
+    form = PostForm(
+        request.POST or None,
+        files=request.FILES or None
+    )
     if form.is_valid():
         post = form.save(commit=False)
         post.author = request.user
@@ -78,7 +81,7 @@ def post_edit(request, post_id):
     is_edit = True
     form = PostForm(
         request.POST or None,
-        # files=request.FILES or None,
+        files=request.FILES or None,
         instance=post
     )
     if post.author == request.user and request.method == 'POST':
