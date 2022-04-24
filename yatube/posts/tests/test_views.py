@@ -2,7 +2,6 @@ import shutil
 import tempfile
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
-# from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase, override_settings
@@ -93,8 +92,6 @@ class PostPagesTests(TestCase):
         for value, expected in form_fields.items():
             with self.subTest(value=value):
                 form_field = response.context['form'].fields[value]
-                # Проверяет, что поле формы является экземпляром
-                # указанного класса
                 self.assertIsInstance(form_field, expected)
 
     def test_edit_page_show_correct_context(self):
@@ -110,8 +107,6 @@ class PostPagesTests(TestCase):
         for value, expected in form_fields.items():
             with self.subTest(value=value):
                 form_field = response.context['form'].fields[value]
-                # Проверяет, что поле формы является экземпляром
-                # указанного класса
                 self.assertIsInstance(form_field, expected)
 
 
