@@ -89,3 +89,17 @@ class PostUrlsTests(TestCase):
                 ))
                 self.assertEqual(response.status_code, 200)
                 self.assertTemplateUsed(response, template)
+
+    def test_404_uses_custom_template(self):
+        """Проверка , что ошибка 404 использует кастомный шаблон"""
+        unexpected_urls = {
+            reverse(
+                'posts:group_list', kwargs={
+                    'slug': '1'
+                }
+            ): 'core/404.html',
+        }
+        for url, template in unexpected_urls.items():
+            with self.subTest(url=url):
+                response = self.guest_client.get(url)
+                self.assertTemplateUsed(response, template)

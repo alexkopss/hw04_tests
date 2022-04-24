@@ -3,13 +3,10 @@
       {% block content %} 
       <!-- класс py-5 создает отступы сверху и снизу блока -->
       {% block title %}
-        <title>Главная страница сайта</title>
+        <title>Подписки на авторов</title>
       {% endblock %} 
       <div class="container py-5">
-        {% load cache %}     
-        <h1>Последние обновления на сайте</h1>
-        {% include 'posts/includes/switcher.html' %}
-          {% cache 20 main page_obj %}
+        <h1>Ваши подписки на авторов</h1>
           {% for post in page_obj %}
           <ul>
             <li>
@@ -28,7 +25,6 @@
           {% endif %} 
           {% if not forloop.last %}<hr>{% endif %}
           {% endfor %}
-          {% endcache %} 
           <!-- под последним постом нет линии -->
       </div>
       {% include 'posts/includes/paginator.html' %}
